@@ -603,9 +603,9 @@ class Bot(BaseBot):
       else:
           target_users = await self.get_users(selected_users, user)
           for target_user in target_users:
-              if command == "!teleport" and user.username in vip:
+              if command == "!teleport2" and user.username in vip:
                   await self.highrise.teleport(target_user.id, self.user_teleport_position2)
-              elif command == "!down" and user.username in vip:
+              elif command == "!teleport" and user.username in vip:
                   await self.highrise.teleport(target_user.id, self.user_teleport_position)
               elif command == "!vip" and user.username in vip:
                   await self.highrise.teleport(target_user.id, self.user_teleport_position3)
