@@ -48,7 +48,7 @@ class Bot(BaseBot):
 
   def __init__(self):
   
-    self.user_teleport_position = Position(x=6.0, y=0.5, z=11.0, facing='FrontRight')
+    self.user_teleport_position =  Position(x=8.5, y=0.5, z=4.5, facing='BackRight')
     self.user_teleport_position2 = Position(x=5.5, y=7.5, z=4.5, facing='FrontRight')
     self.user_teleport_position3 = Position(x=5.0, y=16.5, z=4.5, facing='FrontRight')
 
