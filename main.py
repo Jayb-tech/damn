@@ -50,7 +50,7 @@ class Bot(BaseBot):
 
     self.user_teleport_position =  Position(x=8.5, y=0.5, z=4.5, facing='BackRight')
     self.user_teleport_position2 = Position(x=5.5, y=7.5, z=4.5, facing='FrontRight')
-    self.user_teleport_position3 = Position(x=5.0, y=16.5, z=4.5, facing='FrontRight')
+    self.user_teleport_position3 =Position(x=4.0, y=16.849998474121094, z=2.0, facing='FrontRight')
     self.user_teleport_positionD = Position(x=6.0, y=0.25, z=9.5, facing='FrontRight')
     self.user_teleport_positionU = Position(x=12.5, y=16.75, z=9.5, facing='FrontLeft')
 
