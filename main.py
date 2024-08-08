@@ -47,10 +47,12 @@ vip = [
 class Bot(BaseBot):
 
   def __init__(self):
-  
+
     self.user_teleport_position =  Position(x=8.5, y=0.5, z=4.5, facing='BackRight')
     self.user_teleport_position2 = Position(x=5.5, y=7.5, z=4.5, facing='FrontRight')
     self.user_teleport_position3 = Position(x=5.0, y=16.5, z=4.5, facing='FrontRight')
+    self.user_teleport_positionD = Position(x=6.0, y=0.25, z=9.5, facing='FrontRight')
+    self.user_teleport_positionU = Position(x=12.5, y=16.75, z=9.5, facing='FrontLeft')
 
     self.user_loops = {}
     self.room_open = False
@@ -64,7 +66,7 @@ class Bot(BaseBot):
             session_metadata.user_id,
         Position(x=14.5, y=16.5, z=6.0, facing='FrontRight')))
 
-      
+
 
   async def get_users(self, selected_users, default_user):
     target_users = []
@@ -79,315 +81,316 @@ class Bot(BaseBot):
 
   async def on_user_join(self, user: User,
          position: Position | AnchorPosition) -> None:
-  
+
     if self.room_open:
      await self.highrise.send_whisper(user.id, "welcome to our free item room, please stand in line, if not we will kick you 😊")
     else:
      await self.highrise.send_whisper(user.id, "Room closed.")
- 
+
   emote_dict = {
-      "blow": {
-          "emote": "emote-headblowup",
-          "delay": 11.667537
-      },
-      "skate": {
-          "emote": "emote-iceskating",
-          "delay": 7.299156
-      },
-      "boxer": {
-          "emote": "emote-boxer",
-          "delay": 5.555702
-      },
-      "tired": {
-          "emote": "emote-tired",
-          "delay": 10
-      },
-      "dance": {
-          "emote": "dance-macarena",
-          "delay": 12.5
-      },
-      "loopsit": {
-          "emote": "idle-loop-sitfloor",
-          "delay": 10
-      },
-      "weird": {
-          "emote": "dance-weird",
-          "delay": 22
-      },
-      "laugh": {
-          "emote": "emote-laughing",
-          "delay": 3
-      },
-      "kiss": {
-          "emote": "emote-kiss",
-          "delay": 3
-      },
-      "wave": {
-          "emote": "emote-wave",
-          "delay": 10
-      },
-      "teleport": {
-          "emote": "emote-teleporting",
-          "delay": 12.5
-      },
-      "hot": {
-          "emote": "emote-hot",
-          "delay": 4.8
-      },
-      "shopping": {
-          "emote": "dance-shoppingcart",
-          "delay": 5
-      },
-      "greedy": {
-          "emote": "emote-greedy",
-          "delay": 4.8
-      },
-      "float": {
-          "emote": "emote-float",
-          "delay": 9.3
-      },
-      "yes": {
-          "emote": "emote-yes",
-          "delay": 10
-      },
-      "celebrate": {
-          "emote": "emoji-celebrate",
-          "delay": 4
-      },
-      "no": {
-          "emote": "emote-no",
-          "delay": 10
-      },
-      "swordfight": {
-          "emote": "emote-swordfight",
-          "delay": 6
-      },
-      "shy": {
-          "emote": "emote-shy",
-          "delay": 10
-      },
-      "tiktok2": {
-          "emote": "dance-tiktok2",
-          "delay": 11
-      },
-      "charging": {
-          "emote": "emote-charging",
-          "delay": 8.5
-      },
-      "worm": {
-          "emote": "emote-snake",
-          "delay": 6
-      },
-      "russian": {
-          "emote": "dance-russian",
-          "delay": 10.3
-      },
-      "sad": {
-          "emote": "emote-sad",
-          "delay": 10
-      },
-      "cursing": {
-          "emote": "emoji-cursing",
-          "delay": 2.5
-      },
-      "flex": {
-          "emote": "emoji-flex",
-          "delay": 3
-      },
-      "gagging": {
-          "emote": "emoji-gagging",
-          "delay": 6
-      },
-      "tiktok8": {
-          "emote": "dance-tiktok8",
-          "delay": 11
-      },
-      "kpop": {
-          "emote": "dance-blackpink",
-          "delay": 7
-      },
-      "pennywise": {
-          "emote": "dance-pennywise",
-          "delay": 1.5
-      },
-      "bow": {
-          "emote": "emote-bow",
-          "delay": 3.3
-      },
-      "curtsy": {
-          "emote": "emote-curtsy",
-          "delay": 2.8
-      },
-      "snowangel": {
-          "emote": "emote-snowangel",
-          "delay": 6.8
-      },
-      "energyball": {
-          "emote": "emote-energyball",
-          "delay": 8.3
-      },
-      "frog": {
-          "emote": "emote-frog",
-          "delay": 15
-      },
-      "cute": {
-          "emote": "emote-cute",
-          "delay": 7.3
-      },
-      "tiktok9": {
-          "emote": "dance-tiktok9",
-          "delay": 13
-      },
-      "shuffle": {
-          "emote": "dance-tiktok10",
-          "delay": 9
-      },
-      "pose7": {
-          "emote": "emote-pose7",
-          "delay": 5.3
-      },
-      "pose8": {
-          "emote": "emote-pose8",
-          "delay": 4.6
-      },
-      "casual": {
-          "emote": "idle-dance-casual",
-          "delay": 9.7
-      },
-      "pose1": {
-          "emote": "emote-pose1",
-          "delay": 3
-      },
-      "pose3": {
-          "emote": "emote-pose3",
-          "delay": 4.7
-      },
-      "pose5": {
-          "emote": "emote-pose5",
-          "delay": 5
-      },
-      "cutey": {
-          "emote": "emote-cutey",
-          "delay": 3.5
-      },
-      "model": {
-          "emote": "emote-model",
-          "delay": 6.3
-      },
-      "astro": {
-          "emote": "emote-astronaut",
-          "delay": 0
-      },  # No delay specified, set to 0
-      "guitar": {
-          "emote": "emote-punkguitar",
-          "delay": 10
-      },
-      "fashionista": {
-          "emote": "emote-fashionista",
-          "delay": 6
-      },
-      "uwu": {
-          "emote": "idle-uwu",
-          "delay": 25
-      },
-      "wrong": {
-          "emote": "dance-wrong",
-          "delay": 13
-      },
-      "sayso": {
-          "emote": "idle-dance-tiktok4",
-          "delay": 16
-      },
-      "maniac": {
-          "emote": "emote-maniac",
-          "delay": 5.5
-      },
-      "enthused": {
-          "emote": "idle-enthusiastic",
-          "delay": 16.5
-      },
-      "happy": {
-          "emote": "emote-happy",
-          "delay": 0
-      },  # No delay specified, set to 0
-      "timejump": {
-          "emote": "emote-timejump",
-          "delay": 1.9
-      },  # No delay specified, set to 0
-      "creepy": {
-          "emote": "dance-creepypuppet",
-          "delay": 10
-      },
-      "sleigh": {
-          "emote": "emote-sleigh",
-          "delay": 9
-      },  # No delay specified, set to 0
-      "singing": {
-          "emote": "idle_singing",
-          "delay": 12
-      },
-      "anime": {
-          "emote": "dance-anime",
-          "delay": 8.4
-      },  # No delay specified, set to 0
-      "hyped": {
-          "emote": "emote-hyped",
-          "delay": 6.7
-      },  # No delay specified, set to 0
-      "jingle": {
-          "emote": "dance-jinglebell",
-          "delay": 11.8
-      },  # No delay specified, set to 0
-      "snowball": {
-          "emote": "emote-snowball",
-          "delay": 6
-      },
-      "cutesalute": {
-          "emote": "emote-cutesalute",
-          "delay": 22.321055
-      },
-      "enthused": {
-          "emote": "idle-enthusiastic",
-          "delay": 15.941537
-      },
-      "salute": {
-          "emote":"emote-salute",
-          "delay": 3
-      },
-      "pushit": {
-          "emote": "dance-employee",
-          "delay": 8
-      },
-      "gift": {
-          "emote": "emote-gift",
-          "delay": 5.8
-      },
-      "touch": {
-          "emote": "dance-touch",
-          "delay": 10.000
-      },
-      "creepycute": {
-          "emote": "emote-creepycute",
-          "delay": 7.902453
-      },
-      "kawai": {
-          "emote": "dance-kawai",
-          "delay": 7.9
-      },
-      "scritchy": {
-          "emote":"idle-wild",
-          "delay": 26.422824},
-      "nervous":
-      {"emote":"idle-nervous",
-      'delay': 21.714221},
-      "toilet":
-        {"emote":"idle-toilet",
-        'delay': 32.174447},
-      
-      "superpose":
-        {"emote":"emote-superpose",
-        'delay': 4.530791}
-  }
+          "blow": {
+              "emote": "emote-headblowup",
+              "delay": 11.667537
+          },
+          "skate": {
+              "emote": "emote-iceskating",
+              "delay": 7.299156
+          },
+          "boxer": {
+              "emote": "emote-boxer",
+              "delay": 5.555702
+          },
+          "tired": {
+              "emote": "emote-tired",
+              "delay": 10
+          },
+          "dance": {
+              "emote": "dance-macarena",
+              "delay": 12.5
+          },
+          "loopsit": {
+              "emote": "idle-loop-sitfloor",
+              "delay": 10
+          },
+          "weird": {
+              "emote": "dance-weird",
+              "delay": 22
+          },
+          "laugh": {
+              "emote": "emote-laughing",
+              "delay": 3
+          },
+          "kiss": {
+              "emote": "emote-kiss",
+              "delay": 3
+          },
+          "wave": {
+              "emote": "emote-wave",
+              "delay": 10
+          },
+          "teleport": {
+              "emote": "emote-teleporting",
+              "delay": 12.5
+          },
+          "hot": {
+              "emote": "emote-hot",
+              "delay": 4.8
+          },
+          "shopping": {
+              "emote": "dance-shoppingcart",
+              "delay": 5
+          },
+          "greedy": {
+              "emote": "emote-greedy",
+              "delay": 4.8
+          },
+          "float": {
+              "emote": "emote-float",
+              "delay": 9.3
+          },
+          "celebrate": {
+              "emote": "emoji-celebrate",
+              "delay": 4
+          },
+          "wop": {
+              "emote": "dance-tiktok11",
+              "delay": 10
+          },
+          "swordfight": {
+              "emote": "emote-swordfight",
+              "delay": 6
+          },
+          "sexy": {
+                "emote": "dance-sexy",
+                "delay": 6
+            },
+
+          "shy": {
+              "emote": "emote-shy",
+              "delay": 10
+          },
+          "tiktok2": {
+              "emote": "dance-tiktok2",
+              "delay": 11
+          },
+          "charging": {
+              "emote": "emote-charging",
+              "delay": 8.5
+          },
+          "worm": {
+              "emote": "emote-snake",
+              "delay": 6
+          },
+          "russian": {
+              "emote": "dance-russian",
+              "delay": 10.3
+          },
+          "sad": {
+              "emote": "emote-sad",
+              "delay": 10
+          },
+          "cursing": {
+              "emote": "emoji-cursing",
+              "delay": 2.5
+          },
+          "flex": {
+              "emote": "emoji-flex",
+              "delay": 3
+          },
+          "gagging": {
+              "emote": "emoji-gagging",
+              "delay": 6
+          },
+          "tiktok8": {
+              "emote": "dance-tiktok8",
+              "delay": 11
+          },
+          "kpop": {
+              "emote": "dance-blackpink",
+              "delay": 7
+          },
+          "pennywise": {
+              "emote": "dance-pennywise",
+              "delay": 1.5
+          },
+          "bow": {
+              "emote": "emote-bow",
+              "delay": 3.3
+          },
+          "curtsy": {
+              "emote": "emote-curtsy",
+              "delay": 2.8
+          },
+          "snowangel": {
+              "emote": "emote-snowangel",
+              "delay": 6.8
+          },
+          "energyball": {
+              "emote": "emote-energyball",
+              "delay": 8.3
+          },
+          "frog": {
+              "emote": "emote-frog",
+              "delay": 15
+          },
+          "cute": {
+              "emote": "emote-cute",
+              "delay": 7.3
+          },
+          "tiktok9": {
+              "emote": "dance-tiktok9",
+              "delay": 13
+          },
+          "shuffle": {
+              "emote": "dance-tiktok10",
+              "delay": 9
+          },
+          "pose7": {
+              "emote": "emote-pose7",
+              "delay": 5.3
+          },
+          "pose8": {
+              "emote": "emote-pose8",
+              "delay": 4.6
+          },
+          "casual": {
+              "emote": "idle-dance-casual",
+              "delay": 9.7
+          },
+          "pose1": {
+              "emote": "emote-pose1",
+              "delay": 3
+          },
+          "pose3": {
+              "emote": "emote-pose3",
+              "delay": 4.7
+          },
+          "pose5": {
+              "emote": "emote-pose5",
+              "delay": 5
+          },
+          "cutey": {
+              "emote": "emote-cutey",
+              "delay": 3.5
+          },
+          "model": {
+              "emote": "emote-model",
+              "delay": 6.3
+          },
+          "astro": {
+              "emote": "emote-astronaut",
+              "delay": 0
+          },  # No delay specified, set to 0
+          "guitar": {
+              "emote": "emote-punkguitar",
+              "delay": 10
+          },
+          "fashionista": {
+              "emote": "emote-fashionista",
+              "delay": 6
+          },
+          "uwu": {
+              "emote": "idle-uwu",
+              "delay": 25
+          },
+          "wrong": {
+              "emote": "dance-wrong",
+              "delay": 13
+          },
+          "sayso": {
+              "emote": "idle-dance-tiktok4",
+              "delay": 16
+          },
+          "maniac": {
+              "emote": "emote-maniac",
+              "delay": 5.5
+          },
+          "enthused": {
+              "emote": "idle-enthusiastic",
+              "delay": 16.5
+          },
+          "happy": {
+              "emote": "emote-happy",
+              "delay": 0
+          },  # No delay specified, set to 0
+          "timejump": {
+              "emote": "emote-timejump",
+              "delay": 1.9
+          },  # No delay specified, set to 0
+          "creepy": {
+              "emote": "dance-creepypuppet",
+              "delay": 10
+          },
+          "sleigh": {
+              "emote": "emote-sleigh",
+              "delay": 9
+          },  # No delay specified, set to 0
+          "singing": {
+              "emote": "idle_singing",
+              "delay": 12
+          },
+          "anime": {
+              "emote": "dance-anime",
+              "delay": 8.4
+          },  # No delay specified, set to 0
+          "hyped": {
+              "emote": "emote-hyped",
+              "delay": 6.7
+          },  # No delay specified, set to 0
+          "jingle": {
+              "emote": "dance-jinglebell",
+              "delay": 11.8
+          },  # No delay specified, set to 0
+          "snowball": {
+              "emote": "emote-snowball",
+              "delay": 6
+          },
+          "cutesalute": {
+              "emote": "emote-cutesalute",
+              "delay": 22.321055
+          },
+          "enthused": {
+              "emote": "idle-enthusiastic",
+              "delay": 15.941537
+          },
+          "salute": {
+              "emote":"emote-salute",
+              "delay": 3
+          },
+          "pushit": {
+              "emote": "dance-employee",
+              "delay": 8
+          },
+          "gift": {
+              "emote": "emote-gift",
+              "delay": 5.8
+          },
+          "touch": {
+              "emote": "dance-touch",
+              "delay": 10.000
+          },
+          "creepycute": {
+              "emote": "emote-creepycute",
+              "delay": 7.902453
+          },
+          "kawai": {
+              "emote": "dance-kawai",
+              "delay": 7.9
+          },
+          "scritchy": {
+              "emote":"idle-wild",
+              "delay": 26.422824},
+          "nervous":
+          {"emote":"idle-nervous",
+          'delay': 21.714221},
+          "toilet":
+            {"emote":"idle-toilet",
+            'delay': 32.174447},
+
+          "superpose":
+            {"emote":"emote-superpose",
+            'delay': 4.530791}
+      }
 
   async def send_emote_continuously(self, emote_data: dict,
                                     user_id: int) -> None:
@@ -417,7 +420,7 @@ class Bot(BaseBot):
           elif message.lower() == "!closed":
               self.room_open = False
               await self.highrise.send_whisper(user.id, "The room is now closed.")
-   
+
     if user.username in vip:
       message = message.strip().lower()
       if message == "stop":
@@ -474,11 +477,11 @@ class Bot(BaseBot):
 
 
 
-      
+
       if message.startswith("!wallet"):
           wallet = (await self.highrise.get_wallet()).content
           await self.highrise.chat(f"The bot wallet contains {wallet[0].amount} {wallet[0].type}")
-          
+
       if message.startswith("!promote"):
           if user.username != "iced_yu":
               await self.highrise.chat("You do not have permission to use this command.")
@@ -559,7 +562,7 @@ class Bot(BaseBot):
               await self.highrise.chat(f"Error: {e}")
               return
 
-          
+
       message = message.strip()
       print(user.username + ": " + message)
       operation = message.split('@')
@@ -609,8 +612,12 @@ class Bot(BaseBot):
                   await self.highrise.teleport(target_user.id, self.user_teleport_position)
               elif command == "!vip" and user.username in vip:
                   await self.highrise.teleport(target_user.id, self.user_teleport_position3)
-              elif command == "!bar" and user.username in vip:
-                  await self.highrise.teleport(target_user.id, self.bar)
+              elif command == "!up" and user.username in vip:
+                await self.highrise.teleport(target_user.id, self.user_teleport_positionU)
+              elif command == "!down" and user.username in vip:
+                await self.highrise.teleport(target_user.id, self.user_teleport_positionD)
+
+
 
       if message == "!emotes":
           emotes_list = list(self.emote_dict.keys())
@@ -689,12 +696,6 @@ class Bot(BaseBot):
                    return
                #send message to chat
                await self.highrise.chat(f"{username} has been kicked from the room.")
-
-
-
-
-
-
 
 
 bot_file_name = "main"
